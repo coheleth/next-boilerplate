@@ -17,7 +17,6 @@ This is a simple portfolio next.js boilerplate.
   - [x] Navigation Bar
   - [x] Footer
   - [ ] Button
-  - [ ]
 
 ## Getting Started
 
@@ -52,8 +51,6 @@ coheleths-next-boilerplate/
 ┗ public/
   ┃ (static files)
   ┗ images/ (static images)
-
-
 ```
 
 ## Learn More
