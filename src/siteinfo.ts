@@ -1,4 +1,4 @@
-export default {
+const siteinfo = {
   title: "Coheleth's Next Boilerplate",
   lang: "en",
   owner: "Coheleth",
@@ -20,3 +20,4 @@ export default {
     },
   },
 };
+export default siteinfo;

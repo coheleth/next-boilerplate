@@ -1,11 +1,12 @@
 import siteinfo from "../siteinfo";
+import Link from "next/link";
 
-function Link({ href, path, children }: any) {
+function NavLink({ href, path, children }: any) {
   const className = path === href ? "active" : "";
   return (
-    <a href={href} className={className}>
+    <Link href={href} className={className}>
       {children}
-    </a>
+    </Link>
   );
 }
 
@@ -13,14 +14,14 @@ export function Navbar({ url, children }: any) {
   return (
     <div id="main-navbar-wrapper">
       <nav id="main-navbar">
-        <a href="/">{siteinfo.title}</a>
+        <Link href="/">{siteinfo.title}</Link>
         <div className="spacer"></div>
-        <Link href="/" path={url}>
+        <NavLink href="/" path={url}>
           Home
-        </Link>
-        <Link href="/blog/" path={url}>
+        </NavLink>
+        <NavLink href="/blog/" path={url}>
           Blog
-        </Link>
+        </NavLink>
       </nav>
     </div>
   );
