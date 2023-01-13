@@ -58,7 +58,7 @@ export default function Post({ frontmatter, content }: any) {
           )}
           <div className={style.content}>
             <h1>{frontmatter.title}</h1>
-            <ReactMarkdown children={content}></ReactMarkdown>
+            <ReactMarkdown>{content}</ReactMarkdown>
           </div>
         </article>
       </main>

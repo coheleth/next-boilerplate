@@ -26,11 +26,19 @@
 }
 .content {
   padding: $layout-padding;
-  max-width: 960px;
-  margin-left: auto;
+
+  p {
+    max-width: 80ch;
+  }
 
   pre {
     padding: $layout-padding-v / 2 $layout-padding-h / 2;
     border: 2px solid $colour-text;
+  }
+
+  @include layout-bp-s {
+    padding-right: $layout-padding-h * 2;
+    max-width: 50rem;
+    margin-left: auto;
   }
 }

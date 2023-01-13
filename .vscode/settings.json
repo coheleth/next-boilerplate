@@ -2,5 +2,5 @@
   "files.exclude": {
     "**/node_modules/": true
   },
-  "cSpell.words": ["coheleths", "siteinfo"]
+  "cSpell.words": ["coheleths", "rehype", "siteinfo"]
 }

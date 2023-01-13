@@ -6,7 +6,13 @@ $page-width: 100%;
 $page-max-width: 1280px;
 $page-margin: auto;
 
-$footer-margin: 4rem;
-$navbar-margin: 4rem;
+$footer-margin: 2rem;
+$navbar-margin: 2rem;
 
-$breakpoint-s: 360px;
+$breakpoint-s: 600px;
+
+@mixin bp-s {
+  @media screen and (min-width: $breakpoint-s) {
+    @content;
+  }
+}

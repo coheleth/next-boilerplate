@@ -26,14 +26,54 @@ section {
   padding: $layout-padding;
 }
 footer {
-  margin-bottom: $layout-footer-margin;
-  border: 2px solid $colour-text;
+  border-top: 2px solid $colour-text;
+  @include layout-bp-s {
+    margin-bottom: $layout-footer-margin;
+    border: 2px solid $colour-text;
+  }
 }
 #footer-wrapper {
   margin-top: auto;
 }
 #main-navbar {
-  border: 2px solid $colour-text;
+  border-bottom: 2px solid $colour-text;
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  gap: $layout-padding-h;
+
+  .spacer {
+    flex-grow: 10;
+  }
+  .logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: $layout-padding-h / 2;
+
+    .logo-text {
+      display: none;
+
+      @include layout-bp-s {
+        display: block;
+      }
+    }
+
+    .logo-img {
+      position: relative;
+
+      width: auto;
+      height: 2rem;
+      box-sizing: border-box;
+
+      img {
+        object-fit: contain;
+        width: auto;
+        height: 100%;
+      }
+    }
+  }
 
   a {
     color: $colour-text;
@@ -46,15 +86,8 @@ footer {
     }
   }
 
-  @media screen and (min-width: $layout-breakpoint-s) {
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    gap: $layout-padding-h;
-
-    .spacer {
-      flex-grow: 10;
-    }
+  @include layout-bp-s {
+    border: 2px solid $colour-text;
   }
 }
 #main-navbar-wrapper {
@@ -63,7 +96,7 @@ footer {
   top: 0px;
   z-index: 100;
 
-  @media screen and (min-width: $layout-breakpoint-s) {
+  @include layout-bp-s {
     padding-top: $layout-navbar-margin;
   }
 }
