@@ -4,7 +4,7 @@ import { Inter } from "@next/font/google";
 
 import fs from "fs";
 import matter from "gray-matter";
-import md from "markdown-it";
+import ReactMarkdown from "react-markdown";
 
 import style from "../../../styles/Blog.module.scss";
 import siteinfo from "../../../siteinfo";
@@ -58,9 +58,7 @@ export default function Post({ frontmatter, content }: any) {
           )}
           <div className={style.content}>
             <h1>{frontmatter.title}</h1>
-            <div
-              dangerouslySetInnerHTML={{ __html: md().render(content) }}
-            ></div>
+            <ReactMarkdown children={content}></ReactMarkdown>
           </div>
         </article>
       </main>

@@ -1,7 +1,8 @@
 @use "vars" as *;
 
 .main {
-  padding: $layout-padding-v 0;
+  padding: 0;
+  margin-top: -2px;
 }
 .paddedH {
   padding: 0 $layout-padding-h;
@@ -25,4 +26,11 @@
 }
 .content {
   padding: $layout-padding;
+  max-width: 960px;
+  margin-left: auto;
+
+  pre {
+    padding: $layout-padding-v / 2 $layout-padding-h / 2;
+    border: 2px solid $colour-text;
+  }
 }
