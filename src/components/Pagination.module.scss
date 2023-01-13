@@ -1,0 +1,23 @@
+@use "../styles/vars" as *;
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid $colour-text;
+  margin-top: $layout-padding-v;
+  padding: $layout-padding;
+
+  a {
+    font-family: $font-Header;
+    color: $colour-text;
+
+    &.active {
+      font-weight: bold;
+    }
+  }
+
+  * {
+    width: 100%;
+    text-align: center;
+  }
+}

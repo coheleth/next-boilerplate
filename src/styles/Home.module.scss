@@ -1,0 +1,20 @@
+@use "vars" as *;
+.main,
+.unpadded {
+  padding: $layout-padding-v 0 !important;
+}
+.main {
+  padding: $layout-padding-v 0;
+}
+.paddedH {
+  padding: 0 $layout-padding-h;
+}
+.topPosts {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+
+  & > * {
+    grid-column-end: span 1;
+  }
+}

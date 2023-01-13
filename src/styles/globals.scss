@@ -1,0 +1,79 @@
+@use "vars" as *;
+
+html,
+body {
+  margin: 0;
+  font-size: 16px;
+}
+body {
+  background-color: $colour-background;
+  color: $colour-text;
+
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  font-family: $font-Body;
+}
+main,
+footer,
+#main-navbar,
+section {
+  box-sizing: border-box;
+  width: $layout-page-width;
+  max-width: $layout-page-max-width;
+  margin: $layout-page-margin;
+  padding: $layout-padding;
+}
+footer {
+  margin-bottom: $layout-footer-margin;
+  border: 2px solid $colour-text;
+}
+#footer-wrapper {
+  margin-top: auto;
+}
+#main-navbar {
+  border: 2px solid $colour-text;
+
+  a {
+    color: $colour-text;
+    font-weight: bold;
+    text-decoration: none;
+    font-family: $font-Header;
+
+    &.active {
+      text-decoration: underline;
+    }
+  }
+
+  @media screen and (min-width: $layout-breakpoint-s) {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    gap: $layout-padding-h;
+
+    .spacer {
+      flex-grow: 10;
+    }
+  }
+}
+#main-navbar-wrapper {
+  background-color: $colour-background;
+  position: sticky;
+  top: 0px;
+  z-index: 100;
+
+  @media screen and (min-width: $layout-breakpoint-s) {
+    padding-top: $layout-navbar-margin;
+  }
+}
+h1,
+h2 {
+  font-family: $font-Header;
+}
+h1 {
+  font-size: 2rem;
+}
+h2 {
+  font-size: 1.5rem;
+}
