@@ -4,13 +4,14 @@ import { Inter } from "@next/font/google";
 
 import fs from "fs";
 import matter from "gray-matter";
-import ReactMarkdown from "react-markdown";
+import { Markdown } from "../../../markdown";
 
 import style from "../../../styles/Blog.module.scss";
 import siteinfo from "../../../siteinfo";
 
 import { PageHead } from "../../../components/Head";
 import { Navbar } from "../../../components/Navbar";
+import { formatDate } from "../../../utils";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -57,8 +58,16 @@ export default function Post({ frontmatter, content }: any) {
             </div>
           )}
           <div className={style.content}>
-            <h1>{frontmatter.title}</h1>
-            <ReactMarkdown>{content}</ReactMarkdown>
+            <div className={style.meta}>
+              <h1>{frontmatter.title}</h1>
+              <p>
+                {formatDate(frontmatter.date)}
+                {frontmatter.updated && (
+                  <>; Last Updated: {formatDate(frontmatter.updated)}</>
+                )}
+              </p>
+            </div>
+            <Markdown>{content}</Markdown>
           </div>
         </article>
       </main>

@@ -31,13 +31,24 @@
 }
 .content {
   padding: $layout-padding;
+  position: relative;
 
-  p {
-    max-width: 80ch;
+  .meta {
+    margin-bottom: $layout-padding-v * 4;
+  }
+
+  img {
+    // position: absolute;
+    width: 100%;
+  }
+
+  p:not(:has(img)) {
+    height: fit-content;
+    padding-right: calc(100% - 80ch);
   }
 
   pre {
-    padding: $layout-padding-v / 2 $layout-padding-h / 2;
+    //   padding: $layout-padding-v / 2 $layout-padding-h / 2;
     border: 2px solid $colour-text;
   }
 

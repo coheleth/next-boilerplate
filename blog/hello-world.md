@@ -1,6 +1,7 @@
 ---
 title: Hello World!
 date: "2023-01-11"
+updated: "2023-01-16"
 thumbnail: "/images/Nina.jpg"
 ---
 
@@ -15,18 +16,20 @@ What follows is non-sense, just for testing purposes 👍👍
 Lorem markdownum vicem remeasse carpe, arma Pergus nec nunc. Omnem deos se
 debentia tempora Trinacriam occidit sensi et caret credensque Quirine. Est fatis
 capillis ipse, cum, et Verque [Icare](http://altissimus.org/inde-iam),
-inmansuetusque corvus. Laberis sic **Atlas genitalia Carthaea**. Quod aliamve,
-[vidi uno](http://www.bina.com/hymenaeus) veneni, non quicquam tellus patuisset
-praesagaque!
+inmansuetusque corvus.
 
-    plagiarism = hoc_upnp;
-    copySeoSprite.direct *= 5;
-    dimm *= -2;
+```js
+plagiarism = hoc_upnp;
+copySeoSprite.direct *= 5;
+dimm *= -2;
+```
 
 Nonne vultumque vetus; vobis et paratis aether. Ore pastor aethere, resonare, in
 cum equos cadunt. Ut sua tamen caede Cumaea deum ille tempore, etiam ibat
 superis populo! Cum atque calido regna quaesita, regnum auro: fuerat ferat.
 Scelus non civibus infelix.
+
+![meow!](/images/Nina.jpg)
 
 Lycaei opus ad: ipsa facto et artifices, voco _si quo pater_. _Foedus gramen
 lutea_ nec reclusa est Iunonem mendosa. Ego aliquid _meum Hersilie_, dixit
@@ -45,6 +48,9 @@ humano!
 1. E miserae viventia
 2. Nunc fronde in puerili concutit autumnus et
 3. Longum simulavit flumina
+   1. Trinacriam occidit sensi
+   2. Est fatis capillis ipse
+      - Verque Icare
 
 Et ignibus haec **excussit**, dei dum fuerant, Sole nec pedum longa omne,
 detrusit. Rurigenae Tamasenum Ausonio. Ego anguem caedis quod quo turbam vero

@@ -1,5 +1,4 @@
 import Head from "next/head";
-// import "dotenv";
 
 interface Props {
   title: string;

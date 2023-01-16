@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next export && yarn postbuild",
+    "build": "next build && next export",
     "start": "next start",
     "lint": "next lint",
     "postbuild": "node ./scripts/post-build.js"
@@ -27,7 +27,11 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-markdown": "^8.0.4",
+    "react-syntax-highlighter": "^15.5.0",
     "sass": "^1.57.1",
     "typescript": "4.9.4"
+  },
+  "devDependencies": {
+    "@types/react-syntax-highlighter": "^15.5.6"
   }
 }
