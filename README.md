@@ -25,13 +25,13 @@ Demo: https://coheleths-next-boilerplate.vercel.app
 First, install dependencies:
 
 ```bash
-yarn install
+$ yarn install
 ```
 
 Then run in development mode:
 
 ```bash
-yarn dev
+$ yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
@@ -42,17 +42,18 @@ You can start editing the page by modifying `pages/index.tsx`. The page auto-upd
 
 ```
 coheleths-next-boilerplate/
-┃ (project config files)
+┣ (project config files)
 ┣ src/
 ┃ ┣ pages/ (page templates)
 ┃ ┣ styles/ (global scss style files)
 ┃ ┣ components/ (reusable react components)
-┃ ┣ blog/ (markdown blog posts)
-┃ ┣ portfolio/ (markdown portfolio posts) (W.I.P.)
 ┃ ┗ siteinfo.ts (website config file)
-┗ public/
-  ┃ (static files)
-  ┗ images/ (static images)
+┣ public/
+┃ ┣ (static files)
+┃ ┗ images/ (static images)
+┣ blog/ (markdown blog posts)
+┣ portfolio/ (markdown portfolio posts) (W.I.P.)
+┗ scripts/ (some scripts that run after the yarn build command)
 ```
 
 ## Learn More

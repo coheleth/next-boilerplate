@@ -10,9 +10,15 @@
   padding: 0 $layout-padding-h;
 }
 .topPosts {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 1fr;
+  display: flex;
+  flex-direction: column;
+  gap: $layout-padding;
+
+  @include layout-bp-s {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 1fr;
+  }
 
   & > * {
     grid-column-end: span 1;

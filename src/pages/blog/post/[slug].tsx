@@ -9,13 +9,13 @@ import ReactMarkdown from "react-markdown";
 import style from "../../../styles/Blog.module.scss";
 import siteinfo from "../../../siteinfo";
 
-import PageHead from "../../../components/Head";
+import { PageHead } from "../../../components/Head";
 import { Navbar } from "../../../components/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export async function getStaticPaths() {
-  const files = fs.readdirSync("src/blog");
+  const files = fs.readdirSync("blog");
   const paths = files.map((fileName) => ({
     params: {
       slug: fileName.replace(".md", ""),
@@ -29,7 +29,7 @@ export async function getStaticPaths() {
   };
 }
 export async function getStaticProps({ params: { slug } }: any) {
-  const fileName = fs.readFileSync(`src/blog/${slug}.md`, "utf-8");
+  const fileName = fs.readFileSync(`blog/${slug}.md`, "utf-8");
 
   const { data: frontmatter, content } = matter(fileName);
   return {

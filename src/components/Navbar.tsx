@@ -11,7 +11,7 @@ function NavLink({ href, path, children }: any) {
   );
 }
 
-export function Navbar({ url, children }: any) {
+export function Navbar({ url }: any) {
   return (
     <div id="main-navbar-wrapper">
       <nav id="main-navbar">
@@ -32,4 +32,3 @@ export function Navbar({ url, children }: any) {
     </div>
   );
 }
-export default Navbar;
