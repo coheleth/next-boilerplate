@@ -152,27 +152,29 @@ const hlStyle = {
   },
 };
 
+const CodeBlock = ({ className, children, inline, ...props }: any) => {
+  const match = /language-(\w+)/.exec(className || "");
+  return !inline && match ? (
+    <SyntaxHighlighter
+      language={match[1]}
+      PreTag="div"
+      {...props}
+      style={hlStyle}
+    >
+      {String(children).replace(/\n$/, "")}
+    </SyntaxHighlighter>
+  ) : (
+    <code className={className} {...props}>
+      {children}
+    </code>
+  );
+};
+
 export function Markdown({ children }: any) {
   return (
     <ReactMarkdown
       components={{
-        code({ node, inline, className, children, ...props }) {
-          const match = /language-(\w+)/.exec(className || "");
-          return !inline && match ? (
-            <SyntaxHighlighter
-              style={hlStyle}
-              language={match[1]}
-              PreTag="div"
-              {...props}
-            >
-              {String(children).replace(/\n$/, "")}
-            </SyntaxHighlighter>
-          ) : (
-            <code className={className} {...props}>
-              {children}
-            </code>
-          );
-        },
+        code: (props) => <CodeBlock {...props} />,
       }}
     >
       {children}
