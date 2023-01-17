@@ -1,6 +1,6 @@
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-// import { gruvboxDark as hlStyle } from "react-syntax-highlighter/dist/cjs/styles/prism";
+
 const hlStyle = {
   'code[class*="language-"]': {
     color: "#5c6e74",

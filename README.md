@@ -13,6 +13,7 @@ Demo: https://coheleths-next-boilerplate.vercel.app
 - [ ] Blog:
   - [x] Pagination
   - [x] Markdown posts
+  - [x] Syntax Highlighting with Prism
   - [ ] Tags
 - [ ] Basic components:
   - [x] Card
@@ -47,7 +48,9 @@ coheleths-next-boilerplate/
 ┃ ┣ pages/ (page templates)
 ┃ ┣ styles/ (global scss style files)
 ┃ ┣ components/ (reusable react components)
-┃ ┗ siteinfo.ts (website config file)
+┃ ┣ markdown.tsx (markdown renderer config file)
+┃ ┣ siteinfo.ts (website config file)
+┃ ┗ utils.ts (misc. utility functions)
 ┣ public/
 ┃ ┣ (static files)
 ┃ ┗ images/ (static images)
@@ -62,5 +65,3 @@ To learn more about Next.js, take a look at the following resources:
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
