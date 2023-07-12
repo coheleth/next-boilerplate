@@ -40,6 +40,7 @@
   img {
     // position: absolute;
     width: 100%;
+    border: 2px solid $colour-text;
   }
 
   p:not(:has(img)) {
@@ -53,7 +54,7 @@
   }
 
   @include layout-bp-s {
-    padding-right: $layout-padding-h * 2;
+    // padding-right: $layout-padding-h * 2;
     max-width: 50rem;
     margin-left: auto;
   }
