@@ -1,3 +1,8 @@
+//******************************************************************************
+//    HTML document's head element (duh).
+//******************************************************************************
+
+
 import Head from "next/head";
 
 interface Props {
@@ -5,9 +10,8 @@ interface Props {
   description: string;
 }
 
-export function PageHead({ title, description }: Props) {
+export function PageHead({ title, description }: Readonly<Props>) {
   return (
-    <>
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} />
@@ -20,6 +24,5 @@ export function PageHead({ title, description }: Props) {
         )}
         <link rel="icon" href="/favicon.ico" />
       </Head>
-    </>
   );
 }

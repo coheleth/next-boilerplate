@@ -1,4 +1,5 @@
-import styles from "./Pagination.module.scss";
+import styles from "../styles/Pagination.module.scss";
+
 function Link({ index, currentPage, children }: any) {
   const className = index === currentPage ? styles.active : "";
   return (

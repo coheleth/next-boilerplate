@@ -1,3 +1,8 @@
+//******************************************************************************
+//    Top navigation bar, with site logo linking back to the home page (follow-
+//    ing UX best practices), and links to the remaining pages.
+//******************************************************************************
+
 import siteinfo from "../siteinfo";
 import Link from "next/link";
 import Image from "next/image";
