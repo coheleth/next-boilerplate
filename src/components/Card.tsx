@@ -4,7 +4,7 @@
 //    a short summary, taken from the post's frontmatter.
 //******************************************************************************
 
-import Link from "next/link";
+import Link from 'next/link'
 import Image from "next/image";
 
 import siteinfo from "../siteinfo";
@@ -12,13 +12,13 @@ import style from "../styles/Card.module.scss";
 
 import { formatDate } from "../utils";
 
-export function Card({ path, slug, frontmatter, children }: any) {
+export function Card({ post_url, frontmatter, children }: any) {
   return (
-    <Link href={`${path}/${slug}`} className={style.cardWrapper}>
+    <Link href={post_url} className={style.cardWrapper}>
       <article className={style.card}>
         {siteinfo.blog.thumbnails && (
           <div className={style.thumbnail}>
-            <Image src={frontmatter.thumbnail} alt={frontmatter.title} fill />
+            <Image src={frontmatter.thumbnail} alt={frontmatter.title} fill={true} />
           </div>
         )}
         <div className={style.content}>

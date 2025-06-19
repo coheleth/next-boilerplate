@@ -44,9 +44,8 @@ export default function Blog({ posts, pages }: any) {
         <div className={styles.postList}>
           {posts.map(({ slug, frontmatter }: any) => (
             <Card
-              path="/blog/post"
+              post_url={`/blog/post/${slug}`}
               key={slug}
-              slug={slug}
               frontmatter={frontmatter}
             />
           ))}

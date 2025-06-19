@@ -19,7 +19,7 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
     unoptimized: true,
-  },
+  }
 };
 
 module.exports = withMDX(nextConfig);
