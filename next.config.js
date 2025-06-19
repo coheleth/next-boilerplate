@@ -19,7 +19,8 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
     unoptimized: true,
-  }
+  },
+  // output: 'export', // used to make the entire website static
 };
 
 module.exports = withMDX(nextConfig);
