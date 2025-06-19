@@ -1,4 +1,6 @@
 @use "vars" as *;
+@use 'sass:math';
+
 
 html,
 body {
@@ -50,7 +52,7 @@ footer {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: $layout-padding-h / 2;
+    gap: math.div($layout-padding-h, 2);
 
     .logo-text {
       display: none;
