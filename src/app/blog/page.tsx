@@ -9,13 +9,12 @@ import { Navbar } from "../../components/Navbar";
 import { Card } from "../../components/Card";
 import { Pagination } from "../../components/Pagination";
 
-export async function getStaticProps() {
+
+export default function Blog() {
   const files = fs.readdirSync("blog");
-  const posts = files.map((fileName) => {
+  const allPosts = files.map((fileName) => {
     const slug = fileName.replace(".md", "");
-
     const readFile = fs.readFileSync(`blog/${fileName}`, "utf-8");
-
     const { data: frontmatter } = matter(readFile);
 
     return {
@@ -24,16 +23,9 @@ export async function getStaticProps() {
       frontmatter,
     };
   });
-  const pages = Math.ceil(posts.length / siteinfo.blog.pagination.items);
-  return {
-    props: {
-      posts: posts.slice(0, siteinfo.blog.pagination.items),
-      pages,
-    },
-  };
-}
+  const posts = allPosts.slice(0, siteinfo.blog.pagination.items)
+  const pages = Math.ceil(allPosts.length / siteinfo.blog.pagination.items);
 
-export default function Blog({ posts, pages }: any) {
   return (
     <>
       <Navbar url="/blog/" />

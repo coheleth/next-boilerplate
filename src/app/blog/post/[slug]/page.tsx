@@ -4,18 +4,18 @@ import { Inter } from "next/font/google";
 
 import fs from "fs";
 import matter from "gray-matter";
-import { Markdown } from "../../../markdown";
+import { Markdown } from "../../../../markdown";
 
-import style from "../../../styles/Blog.module.scss";
-import siteinfo from "../../../siteinfo";
+import style from "../../../../styles/Blog.module.scss";
+import siteinfo from "../../../../siteinfo";
 
-import { PageHead } from "../../../components/Head";
-import { Navbar } from "../../../components/Navbar";
-import { formatDate } from "../../../utils";
+import { PageHead } from "../../../../components/Head";
+import { Navbar } from "../../../../components/Navbar";
+import { formatDate } from "../../../../utils";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export async function getStaticPaths() {
+export async function generateStaticParams() {
   const files = fs.readdirSync("blog");
   const paths = files.map((fileName) => ({
     params: {
@@ -23,26 +23,22 @@ export async function getStaticPaths() {
       file: fileName,
     },
   }));
-  return {
-    paths,
-
-    fallback: false,
-  };
+  return paths
 }
-export async function getStaticProps({ params: { slug } }: any) {
+export async function getPost({ params: { slug } }: any) {
   const fileName = fs.readFileSync(`blog/${slug}.md`, "utf-8");
 
   const { data: frontmatter, content } = matter(fileName);
   return {
-    props: {
-      frontmatter,
-
-      content,
-    },
+    frontmatter,
+    content
   };
 }
 
-export default function Post({ frontmatter, content }: any) {
+export default async function Post({params}: {params: Promise<{slug: string}>}) {
+  const {slug} = await params;
+  const {frontmatter, content} = await getPost({params: {slug}})
+  
   return (
     <>
       <Navbar url="/blog/" />

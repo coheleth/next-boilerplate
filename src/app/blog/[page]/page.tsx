@@ -1,15 +1,15 @@
 import fs from "fs";
 import matter from "gray-matter";
 
-import styles from "../../styles/Blog.module.scss";
-import siteinfo from "../../siteinfo";
+import styles from "../../../styles/Blog.module.scss";
+import siteinfo from "../../../siteinfo";
 
-import { PageHead } from "../../components/Head";
-import { Navbar } from "../../components/Navbar";
-import { Card } from "../../components/Card";
-import { Pagination } from "../../components/Pagination";
+import { PageHead } from "../../../components/Head";
+import { Navbar } from "../../../components/Navbar";
+import { Card } from "../../../components/Card";
+import { Pagination } from "../../../components/Pagination";
 
-export async function getStaticProps({ params: { page } }: any) {
+async function getPosts({ params: { page } }: any) {
   page = parseInt(page);
 
   const files = fs.readdirSync("blog");
@@ -26,22 +26,23 @@ export async function getStaticProps({ params: { page } }: any) {
       frontmatter,
     };
   });
+
   let pageItems = [];
   for (let i = 0; i < posts.length; i += siteinfo.blog.pagination.items) {
     pageItems.push(posts.slice(i, i + siteinfo.blog.pagination.items));
   }
+
   return {
-    props: {
-      posts: pageItems[page - 1],
-      pages: pageItems.length,
-      currentPage: page,
-    },
+    posts: pageItems[page - 1],
+    pages: pageItems.length,
+    currentPage: page,
   };
 }
 
-export async function getStaticPaths() {
+export async function generateStaticParams() {
   const posts = fs.readdirSync("blog").length;
   const pages = Math.ceil(posts / siteinfo.blog.pagination.items);
+
   let paths = [];
   for (let i = 0; i < pages; i++) {
     paths.push({
@@ -50,13 +51,13 @@ export async function getStaticPaths() {
       },
     });
   }
-  return {
-    fallback: false,
-    paths: paths,
-  };
+
+  return paths
 }
 
-export default function Blog({ posts, pages, currentPage }: any) {
+export default async function Blog({ params }: {params: Promise<{ page: number }>}) {
+  const {page} = await params;
+  const {posts, pages, currentPage} = await getPosts({ params: { page } })
   return (
     <>
       <Navbar url="/blog/" />
