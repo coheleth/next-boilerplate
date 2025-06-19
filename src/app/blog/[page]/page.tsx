@@ -22,7 +22,6 @@ async function getPosts({ params: { page } }: any) {
 
     return {
       slug,
-
       frontmatter,
     };
   });

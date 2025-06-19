@@ -15,6 +15,17 @@ import { formatDate } from "../../../../utils";
 
 const inter = Inter({ subsets: ["latin"] });
 
+async function getPost({ params: { slug } }: any) {
+  const fileName = fs.readFileSync(`blog/${slug}.md`, "utf-8");
+
+  const { data: frontmatter, content } = matter(fileName);
+
+  return {
+    frontmatter: frontmatter,
+    content: content
+  };
+}
+
 export async function generateStaticParams() {
   const files = fs.readdirSync("blog");
   const paths = files.map((fileName) => ({
@@ -24,15 +35,6 @@ export async function generateStaticParams() {
     },
   }));
   return paths
-}
-export async function getPost({ params: { slug } }: any) {
-  const fileName = fs.readFileSync(`blog/${slug}.md`, "utf-8");
-
-  const { data: frontmatter, content } = matter(fileName);
-  return {
-    frontmatter,
-    content
-  };
 }
 
 export default async function Post({params}: {params: Promise<{slug: string}>}) {
