@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { Inter } from "@next/font/google";
+import { Inter } from "next/font/google";
 
 import fs from "fs";
 import matter from "gray-matter";

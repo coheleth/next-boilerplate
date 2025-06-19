@@ -15,11 +15,10 @@ Demo: https://coheleths-next-boilerplate.vercel.app
   - [x] Markdown posts
   - [x] Syntax Highlighting with Prism
   - [ ] Tags
-- [ ] Basic components:
+- [x] Basic components:
   - [x] Card
   - [x] Navigation Bar
   - [x] Footer
-  - [ ] Button
 
 ## Getting Started
 
