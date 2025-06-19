@@ -8,7 +8,9 @@ import { PageHead } from "../components/Head";
 import { Navbar } from "../components/Navbar";
 import { Card } from "../components/Card";
 
-export async function getStaticProps() {
+  
+
+export default function Home() {
   const files = fs.readdirSync("blog");
   const posts = files.map((fileName) => {
     const slug = fileName.replace(".md", "");
@@ -22,15 +24,8 @@ export async function getStaticProps() {
 
       frontmatter,
     };
-  });
-  return {
-    props: {
-      posts: posts.slice(0, siteinfo.home.topPosts),
-    },
-  };
-}
+  }).slice(0, siteinfo.home.topPosts)
 
-export default function Home({ posts }: any) {
   return (
     <>
       <Navbar url="/" />
