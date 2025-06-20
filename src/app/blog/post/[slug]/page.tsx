@@ -1,7 +1,5 @@
 import Image from "next/image";
 
-import { Inter } from "next/font/google";
-
 import fs from "fs";
 import matter from "gray-matter";
 import { Markdown } from "../../../../markdown";
@@ -13,7 +11,6 @@ import { PageHead } from "../../../../components/Head";
 import { Navbar } from "../../../../components/Navbar";
 import { formatDate } from "../../../../utils";
 
-const inter = Inter({ subsets: ["latin"] });
 
 async function getPost({ params: { slug } }: any) {
   const fileName = fs.readFileSync(`blog/${slug}.md`, "utf-8");

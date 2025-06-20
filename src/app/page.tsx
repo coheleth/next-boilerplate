@@ -8,7 +8,6 @@ import { PageHead } from "../components/Head";
 import { Navbar } from "../components/Navbar";
 import { Card } from "../components/Card";
 
-  
 
 export default function Home() {
   const files = fs.readdirSync("blog");
