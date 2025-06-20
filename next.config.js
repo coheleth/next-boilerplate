@@ -18,9 +18,9 @@ const nextConfig = {
   pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
   reactStrictMode: true,
   images: {
-    unoptimized: true,
+    unoptimized: false,
   },
-  // output: 'export', // used to make the entire website static
+  output: 'standalone',
 };
 
 module.exports = withMDX(nextConfig);
