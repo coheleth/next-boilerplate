@@ -1,4 +1,5 @@
 import fs from "fs";
+import path from "path";
 import matter from "gray-matter";
 
 import styles from "../../../styles/Blog.module.scss";
@@ -9,14 +10,17 @@ import { Navbar } from "../../../components/Navbar";
 import { Card } from "../../../components/Card";
 import { Pagination } from "../../../components/Pagination";
 
+
+const blogPath = path.join(process.cwd(), 'blog')
+
 async function getPosts({ params: { page } }: any) {
   page = parseInt(page);
 
-  const files = fs.readdirSync("blog");
+  const files = fs.readdirSync(blogPath);
   const posts = files.map((fileName) => {
     const slug = fileName.replace(".md", "");
 
-    const readFile = fs.readFileSync(`blog/${fileName}`, "utf-8");
+    const readFile = fs.readFileSync(`${blogPath}/${fileName}`, "utf-8");
 
     const { data: frontmatter } = matter(readFile);
 

@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import fs from "fs";
+import path from "path";
 import matter from "gray-matter";
 import { Markdown } from "../../../../markdown";
 
@@ -12,8 +13,10 @@ import { Navbar } from "../../../../components/Navbar";
 import { formatDate } from "../../../../utils";
 
 
+const blogPath = path.join(process.cwd(), 'blog')
+
 async function getPost({ params: { slug } }: any) {
-  const fileName = fs.readFileSync(`blog/${slug}.md`, "utf-8");
+  const fileName = fs.readFileSync(`${blogPath}/${slug}.md`, "utf-8");
 
   const { data: frontmatter, content } = matter(fileName);
 
