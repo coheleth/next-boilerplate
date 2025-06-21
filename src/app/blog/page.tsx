@@ -5,13 +5,19 @@ import matter from "gray-matter";
 import styles from "../../styles/Blog.module.scss";
 import siteinfo from "../../siteinfo";
 
-import { PageHead } from "../../components/Head";
 import { Navbar } from "../../components/Navbar";
 import { Card } from "../../components/Card";
 import { Pagination } from "../../components/Pagination";
+import { Metadata } from "next/types";
 
 
 const blogPath = path.join(process.cwd(), 'blog')
+
+
+export const metadata: Metadata = {
+  title: "Blog"
+}
+
 
 export default function Blog() {
   const files = fs.readdirSync(blogPath);
@@ -32,8 +38,6 @@ export default function Blog() {
   return (
     <>
       <Navbar url="/blog/" />
-      <PageHead title={`Blog – ${siteinfo.title}`} description="dse" />
-
       <main className={styles.main}>
         <h1 className={styles.paddedH}>Blog</h1>
         <div className={styles.postList}>

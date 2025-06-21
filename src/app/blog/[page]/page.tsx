@@ -5,7 +5,6 @@ import matter from "gray-matter";
 import styles from "../../../styles/Blog.module.scss";
 import siteinfo from "../../../siteinfo";
 
-import { PageHead } from "../../../components/Head";
 import { Navbar } from "../../../components/Navbar";
 import { Card } from "../../../components/Card";
 import { Pagination } from "../../../components/Pagination";
@@ -58,14 +57,19 @@ export async function generateStaticParams() {
   return paths
 }
 
+export async function generateMetadata({params}: {params: Promise<{page: number}>}) {
+  const {page} = await params;
+  return {
+    title: `Blog \u2014 page ${page}`,
+  };
+}
+
 export default async function Blog({ params }: {params: Promise<{ page: number }>}) {
   const {page} = await params;
   const {posts, pages, currentPage} = await getPosts({ params: { page } })
   return (
     <>
       <Navbar url="/blog/" />
-      <PageHead title={`Blog – ${siteinfo.title}`} description="dse" />
-
       <main className={styles.main}>
         <h1 className={styles.paddedH}>Blog – Page {currentPage}</h1>
         <div className={styles.postList}>

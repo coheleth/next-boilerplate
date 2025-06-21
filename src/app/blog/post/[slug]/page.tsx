@@ -8,9 +8,9 @@ import { Markdown } from "../../../../markdown";
 import style from "../../../../styles/Blog.module.scss";
 import siteinfo from "../../../../siteinfo";
 
-import { PageHead } from "../../../../components/Head";
 import { Navbar } from "../../../../components/Navbar";
 import { formatDate } from "../../../../utils";
+
 
 
 const blogPath = path.join(process.cwd(), 'blog')
@@ -37,6 +37,14 @@ export async function generateStaticParams() {
   return paths
 }
 
+export async function generateMetadata({params}: {params: Promise<{slug: string}>}) {
+  const {slug} = await params;
+  const {frontmatter} = await getPost({params: {slug}})
+  return {
+    title: frontmatter.title,
+  };
+}
+
 export default async function Post({params}: {params: Promise<{slug: string}>}) {
   const {slug} = await params;
   const {frontmatter, content} = await getPost({params: {slug}})
@@ -44,10 +52,6 @@ export default async function Post({params}: {params: Promise<{slug: string}>}) 
   return (
     <>
       <Navbar url="/blog/" />
-      <PageHead
-        title={`${frontmatter.title} – ${siteinfo.title}`}
-        description="dse"
-      />
       <main className={style.main}>
         <article>
           {siteinfo.blog.thumbnails && (

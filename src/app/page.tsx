@@ -5,9 +5,9 @@ import matter from "gray-matter";
 import styles from "../styles/Home.module.scss";
 import siteinfo from "../siteinfo";
 
-import { PageHead } from "../components/Head";
 import { Navbar } from "../components/Navbar";
 import { Card } from "../components/Card";
+import Link from "next/link";
 
 
 const blogPath = path.join(process.cwd(), 'blog')
@@ -31,11 +31,14 @@ export default function Home() {
   return (
     <>
       <Navbar url="/" />
-      <PageHead title={siteinfo.title} description="dse" />
 
       <main className={styles.main}>
         <section>
           <h1>Welcome to {siteinfo.title}!</h1>
+          <p>{siteinfo.description}</p>
+          <p>
+            <Link href={"https://github.com/coheleth/next-boilerplate"} target="_blank">Github repo</Link>.
+          </p>
         </section>
         <section className={styles.unpadded}>
           <h2 className={styles.paddedH}>Latest posts:</h2>
