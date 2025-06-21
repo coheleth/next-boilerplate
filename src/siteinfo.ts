@@ -8,17 +8,18 @@ const siteinfo = {
     year: new Date().getFullYear(),
   },
   home: {
-    topPosts: 3,
+    topPosts: 2, // Number of blog posts shown in the home page
   },
   blog: {
     thumbnails: true,
     pagination: {
-      items: 3,
-      maxPages: 1,
-      prevNext: true,
-      firstLast: true,
-      centralised: true,
+      items: 4, // Number of posts per page
+      maxPages: 1, // Number of previous and next pages shown in pagination
+      prevNext: true, // Show previous/next page link in pagination
+      firstLast: true, // Show first/last page link in pagination
+      centralised: true, // Centralise pagination links
     },
   },
 };
+
 export default siteinfo;

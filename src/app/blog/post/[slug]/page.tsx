@@ -1,3 +1,7 @@
+//******************************************************************************
+//    Blog post, read from the blog directory (located at the project root).
+//******************************************************************************
+
 import Image from "next/image";
 
 import fs from "fs";
@@ -10,7 +14,6 @@ import siteinfo from "../../../../siteinfo";
 
 import { Navbar } from "../../../../components/Navbar";
 import { formatDate } from "../../../../utils";
-
 
 
 const blogPath = path.join(process.cwd(), 'blog')

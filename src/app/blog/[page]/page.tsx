@@ -1,3 +1,8 @@
+//******************************************************************************
+//    Paginated blog page, dynamically listing posts according to current page.
+//    Posts are read from the blog directory (located at the project root).
+//******************************************************************************
+
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";

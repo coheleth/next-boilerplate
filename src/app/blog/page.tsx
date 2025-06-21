@@ -1,3 +1,8 @@
+//******************************************************************************
+//    Default blog page, equivalent to the first page in pagination.
+//    Posts are read from the blog directory (located at the project root).
+//******************************************************************************
+
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
@@ -28,7 +33,6 @@ export default function Blog() {
 
     return {
       slug,
-
       frontmatter,
     };
   });

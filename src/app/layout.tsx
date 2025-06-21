@@ -1,3 +1,7 @@
+//******************************************************************************
+//    Base layout for the website, with default metadata settings.
+//******************************************************************************
+
 import siteinfo from "../siteinfo";
 
 import { Footer } from "../components/Footer";

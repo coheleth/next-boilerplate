@@ -1,3 +1,8 @@
+//******************************************************************************
+//    Website's homepage, with a short introduction and the latest blog posts.
+//    The amount of posts show is set in the siteinfo.ts file.
+//******************************************************************************
+
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
