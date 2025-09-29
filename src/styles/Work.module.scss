@@ -1,0 +1,75 @@
+@use "vars" as *;
+
+.main {
+  padding: 0;
+  margin-top: -2px;
+}
+.header {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+.paddedH {
+  padding: 0 $layout-padding-h;
+}
+.projectList {
+  display: flex;
+  flex-direction: column;
+  gap: $layout-padding;
+}
+.thumbnail {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  height: 50vh;
+  border: 2px solid $colour-text;
+
+  img {
+    object-fit: cover;
+  }
+}
+.content {
+  padding: $layout-padding;
+  position: relative;
+
+  .meta {
+    margin-bottom: $layout-padding-v * 4;
+  }
+
+  img {
+    width: 100%;
+    border: 2px solid $colour-text;
+  }
+
+  p:not(:has(img)) {
+    height: fit-content;
+    padding-right: calc(100% - 80ch);
+  }
+
+  pre {
+    border: 2px solid $colour-text;
+  }
+
+  @include layout-bp-s {
+    max-width: 50rem;
+    margin-left: auto;
+  }
+}
+
+.summary {
+  margin-top: 4rem;
+  opacity: 0.8;
+  font-style: italic;
+}
+
+.tagList {
+  margin-top: 4rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  a {
+    padding: 0.5rem;
+    border: 2px $colour-text solid;
+  }
+}

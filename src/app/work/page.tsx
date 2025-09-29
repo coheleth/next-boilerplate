@@ -1,14 +1,14 @@
 //******************************************************************************
-//    Paginated blog page, dynamically listing posts according to current page
-//    and search parameters.
-//    Posts are read from the blog directory (located at the project root).
+//    Paginated portfolio page, dynamically listing items according to current
+//    page and search parameters.
+//    Items are read from the work directory (located at the project root).
 //******************************************************************************
 
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 
-import styles from "../../styles/Blog.module.scss";
+import styles from "../../styles/Work.module.scss";
 import siteinfo from "../../siteinfo";
 
 import { Navbar } from "../../components/Navbar";
@@ -16,19 +16,19 @@ import { Card } from "../../components/Card";
 import { Pagination } from "../../components/Pagination";
 import { Search } from "../../components/Search";
 
-const blogPath = path.join(process.cwd(), "blog");
+const workPath = path.join(process.cwd(), "work");
 
 async function getPosts({
   params: { pageNumber, searchQuery, tagFilter },
 }: any) {
   const page = parseInt(pageNumber);
 
-  const files = fs.readdirSync(blogPath);
+  const files = fs.readdirSync(workPath);
 
   const allPosts = files.map((fileName) => {
     const slug = fileName.replace(".md", "");
 
-    const readFile = fs.readFileSync(`${blogPath}/${fileName}`, "utf-8");
+    const readFile = fs.readFileSync(`${workPath}/${fileName}`, "utf-8");
 
     const { data: frontmatter } = matter(readFile);
 
@@ -85,11 +85,10 @@ export async function generateMetadata(
   const searchQuery = searchParams?.query || "";
   const tagFilter = searchParams?.tag || "";
 
-  let pageName = "Blog";
+  let pageName = "Projects";
   let tagName = "";
 
   if (tagFilter != "") {
-    pageName = "Blog posts";
     tagName = `with the tag "${tagFilter}"`;
   }
 
@@ -120,25 +119,25 @@ export default async function Blog(
   });
   return (
     <>
-      <Navbar url="/blog/" />
+      <Navbar url="/work/" />
       <main className={styles.main}>
         <div className={styles.header}>
           <h1>
             {searchQuery.length > 0 && (
               <>Search results for &quot;{searchQuery}&quot; </>
             )}
-            {searchQuery.length == 0 && <>Blog posts </>}
+            {searchQuery.length == 0 && <>Projects </>}
             {tagFilter.length > 0 && <>with the tag &quot;{tagFilter}&quot; </>}
             – Page {currentPage}
           </h1>
 
-          <Search placeholder="Search Posts" />
+          <Search placeholder="Search Projects" />
         </div>
 
-        <div className={styles.postList}>
+        <div className={styles.projectList}>
           {posts?.map(({ slug, frontmatter }: any) => (
             <Card
-              post_url={`/blog/${slug}`}
+              post_url={`/work/${slug}`}
               key={slug}
               frontmatter={frontmatter}
             />

@@ -17,7 +17,7 @@ Demo: https://coheleths-next-boilerplate.vercel.app
   - [x] Navigation Bar
   - [x] Footer
   - [x] Search Bar
-- [ ] Blog:
+- [x] Blog:
   - [x] Pagination
   - [x] Markdown posts
   - [x] Syntax Highlighting with Prism

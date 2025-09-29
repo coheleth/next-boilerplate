@@ -27,9 +27,15 @@ export function Navbar({ url }: any) {
           <span className="logo-text">{siteinfo.title}</span>
         </Link>
         <div className="spacer"></div>
+
         <NavLink href="/" path={url}>
           Home
         </NavLink>
+
+        <NavLink href="/work/" path={url}>
+          Work
+        </NavLink>
+
         <NavLink href="/blog/" path={url}>
           Blog
         </NavLink>

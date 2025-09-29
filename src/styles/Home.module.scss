@@ -9,7 +9,8 @@
 .paddedH {
   padding: 0 $layout-padding-h;
 }
-.topPosts {
+.topPosts,
+.topWork {
   display: flex;
   flex-direction: column;
   gap: $layout-padding;
