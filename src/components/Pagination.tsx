@@ -9,7 +9,6 @@ function Link({ index, currentPage, children }: any) {
   const className = index === currentPage ? styles.active : "";
   return (
     <a
-      // href={index !== currentPage ? `/blog/${index}` : undefined}
       href={index !== currentPage ? `/blog?page=${index}` : undefined}
       className={className}
     >
