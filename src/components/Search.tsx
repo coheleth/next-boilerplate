@@ -42,7 +42,12 @@ export function Search({ placeholder }: any) {
         className={styles.searchbar}
         defaultValue={searchParams.get("query")?.toString()}
       />
-      <input type="submit" value="Search" className={styles.button} />
+      <input
+        type="submit"
+        value="Search"
+        title="Search"
+        className={styles.button}
+      />
     </form>
   );
 }
