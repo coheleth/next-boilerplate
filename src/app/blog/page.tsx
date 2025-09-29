@@ -120,10 +120,10 @@ export default async function Blog(
       <Navbar url="/blog/" />
       <main className={styles.main}>
         <div className={styles.header}>
-          {searchQuery == "" && <h1>Blog – Page {currentPage}</h1>}
-          {searchQuery != "" && (
+          {searchQuery.length == 0 && <h1>Blog – Page {currentPage}</h1>}
+          {searchQuery.length > 0 && (
             <h1>
-              Search results for "{searchQuery}" – Page {currentPage}
+              Search results for &quot;{searchQuery}&quot; – Page {currentPage}
             </h1>
           )}
 
