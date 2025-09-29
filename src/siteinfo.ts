@@ -1,6 +1,7 @@
 const siteinfo = {
   title: "Coheleth's Next Boilerplate",
-  description: "Minimalist next.js SSG Boilerplate with SASS support and simple blog functionalities.",
+  description:
+    "Minimal next.js SSR Boilerplate with SASS support and simple blog functionalities.",
   lang: "en",
   owner: "Coheleth",
   copyright: {

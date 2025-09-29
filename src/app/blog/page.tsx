@@ -17,11 +17,12 @@ import { Search } from "../../components/Search";
 
 const blogPath = path.join(process.cwd(), "blog");
 
-async function getPosts({ params: { pageNumber } }: any) {
+async function getPosts({ params: { pageNumber, searchQuery } }: any) {
   const page = parseInt(pageNumber);
 
   const files = fs.readdirSync(blogPath);
-  const posts = files.map((fileName) => {
+
+  const allPosts = files.map((fileName) => {
     const slug = fileName.replace(".md", "");
 
     const readFile = fs.readFileSync(`${blogPath}/${fileName}`, "utf-8");
@@ -33,6 +34,21 @@ async function getPosts({ params: { pageNumber } }: any) {
       frontmatter,
     };
   });
+
+  let posts = allPosts;
+
+  if (searchQuery != "") {
+    posts = allPosts.filter((post) => {
+      return [
+        post.frontmatter.title || "",
+        post.frontmatter.summary || "",
+        (post.frontmatter.tags || []).join(" "),
+      ]
+        .join(" ")
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase());
+    });
+  }
 
   let pageItems = [];
   for (let i = 0; i < posts.length; i += siteinfo.blog.pagination.items) {
@@ -62,40 +78,60 @@ export async function generateStaticParams() {
   return paths;
 }
 
-export async function generateMetadata(props: {
-  searchParams?: Promise<{
-    page?: string;
-  }>;
-}) {
+export async function generateMetadata(
+  props: Readonly<{
+    searchParams?: Promise<{
+      query?: string;
+      page?: string;
+    }>;
+  }>
+) {
   const searchParams = await props.searchParams;
   const pageNumber = Number(searchParams?.page) || 1;
-  return {
-    title: `Blog \u2014 page ${pageNumber}`,
-  };
+  const searchQuery = searchParams?.query || "";
+  if (searchQuery == "") {
+    return {
+      title: `Blog \u2014 page ${pageNumber}`,
+    };
+  } else {
+    return {
+      title: `Search results for "${searchQuery}" \u2014 page ${pageNumber}`,
+    };
+  }
 }
 
-export default async function Blog(props: {
-  searchParams?: Promise<{
-    page?: string;
-  }>;
-}) {
+export default async function Blog(
+  props: Readonly<{
+    searchParams?: Promise<{
+      query?: string;
+      page?: string;
+    }>;
+  }>
+) {
   const searchParams = await props.searchParams;
   const pageNumber = Number(searchParams?.page) || 1;
+  const searchQuery = searchParams?.query || "";
 
   const { posts, pages, currentPage } = await getPosts({
-    params: { pageNumber },
+    params: { pageNumber, searchQuery },
   });
   return (
     <>
       <Navbar url="/blog/" />
       <main className={styles.main}>
         <div className={styles.header}>
-          <h1>Blog – Page {currentPage}</h1>
+          {searchQuery == "" && <h1>Blog – Page {currentPage}</h1>}
+          {searchQuery != "" && (
+            <h1>
+              Search results for "{searchQuery}" – Page {currentPage}
+            </h1>
+          )}
+
           <Search placeholder="Search..." />
         </div>
 
         <div className={styles.postList}>
-          {posts.map(({ slug, frontmatter }: any) => (
+          {posts?.map(({ slug, frontmatter }: any) => (
             <Card
               post_url={`/blog/post/${slug}`}
               key={slug}
@@ -107,6 +143,7 @@ export default async function Blog(props: {
           pages={pages}
           currentPage={currentPage}
           settings={siteinfo.blog.pagination}
+          query={searchQuery}
         />
       </main>
     </>
