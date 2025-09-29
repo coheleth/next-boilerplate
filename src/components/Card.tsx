@@ -26,8 +26,10 @@ export function Card({
           <div className={style.thumbnail}>
             <Image
               fetchPriority="high"
+              priority={true}
               src={frontmatter.thumbnail}
               alt={frontmatter.title}
+              sizes="620px"
               fill={true}
             />
           </div>
