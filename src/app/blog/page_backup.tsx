@@ -1,5 +1,5 @@
 //******************************************************************************
-//    Paginated blog page, dynamically listing posts according to current page.
+//    Default blog page, equivalent to the first page in pagination.
 //    Posts are read from the blog directory (located at the project root).
 //******************************************************************************
 
@@ -15,17 +15,19 @@ import { Card } from "../../components/Card";
 import { Pagination } from "../../components/Pagination";
 import { Search } from "../../components/Search";
 
+import { Metadata } from "next/types";
+
 const blogPath = path.join(process.cwd(), "blog");
 
-async function getPosts({ params: { pageNumber } }: any) {
-  const page = parseInt(pageNumber);
+export const metadata: Metadata = {
+  title: "Blog",
+};
 
+export default function Blog() {
   const files = fs.readdirSync(blogPath);
-  const posts = files.map((fileName) => {
+  const allPosts = files.map((fileName) => {
     const slug = fileName.replace(".md", "");
-
     const readFile = fs.readFileSync(`${blogPath}/${fileName}`, "utf-8");
-
     const { data: frontmatter } = matter(readFile);
 
     return {
@@ -33,64 +35,15 @@ async function getPosts({ params: { pageNumber } }: any) {
       frontmatter,
     };
   });
+  const posts = allPosts.slice(0, siteinfo.blog.pagination.items);
+  const pages = Math.ceil(allPosts.length / siteinfo.blog.pagination.items);
 
-  let pageItems = [];
-  for (let i = 0; i < posts.length; i += siteinfo.blog.pagination.items) {
-    pageItems.push(posts.slice(i, i + siteinfo.blog.pagination.items));
-  }
-
-  return {
-    posts: pageItems[page - 1],
-    pages: pageItems.length,
-    currentPage: page,
-  };
-}
-
-export async function generateStaticParams() {
-  const posts = fs.readdirSync("blog").length;
-  const pages = Math.ceil(posts / siteinfo.blog.pagination.items);
-
-  let paths = [];
-  for (let i = 0; i < pages; i++) {
-    paths.push({
-      params: {
-        page: (i + 1).toString(),
-      },
-    });
-  }
-
-  return paths;
-}
-
-export async function generateMetadata(props: {
-  searchParams?: Promise<{
-    page?: string;
-  }>;
-}) {
-  const searchParams = await props.searchParams;
-  const pageNumber = Number(searchParams?.page) || 1;
-  return {
-    title: `Blog \u2014 page ${pageNumber}`,
-  };
-}
-
-export default async function Blog(props: {
-  searchParams?: Promise<{
-    page?: string;
-  }>;
-}) {
-  const searchParams = await props.searchParams;
-  const pageNumber = Number(searchParams?.page) || 1;
-
-  const { posts, pages, currentPage } = await getPosts({
-    params: { pageNumber },
-  });
   return (
     <>
       <Navbar url="/blog/" />
       <main className={styles.main}>
         <div className={styles.header}>
-          <h1>Blog – Page {currentPage}</h1>
+          <h1>Blog</h1>
           <Search placeholder="Search..." />
         </div>
 
@@ -105,7 +58,7 @@ export default async function Blog(props: {
         </div>
         <Pagination
           pages={pages}
-          currentPage={currentPage}
+          currentPage={1}
           settings={siteinfo.blog.pagination}
         />
       </main>
