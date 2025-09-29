@@ -140,6 +140,8 @@ export default async function Blog(
               post_url={`/work/${slug}`}
               key={slug}
               frontmatter={frontmatter}
+              hideDate={true}
+              collectionName={"work"}
             />
           ))}
         </div>

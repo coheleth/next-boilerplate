@@ -12,7 +12,13 @@ import style from "../styles/Card.module.scss";
 
 import { formatDate } from "../utils";
 
-export function Card({ post_url, frontmatter, children }: any) {
+export function Card({
+  post_url,
+  frontmatter,
+  hideDate = false,
+  collectionName = "blog",
+  children,
+}: any) {
   return (
     <div className={style.cardWrapper}>
       <article className={style.card}>
@@ -29,11 +35,11 @@ export function Card({ post_url, frontmatter, children }: any) {
           <Link href={post_url}>
             <h1>{frontmatter.title}</h1>
           </Link>
-          <p>{formatDate(frontmatter.date)}</p>
+          {!hideDate && <p>{formatDate(frontmatter.date)}</p>}
           <p className={style.summary}>{frontmatter.summary}</p>
           <div className={style.tagList}>
             {frontmatter.tags?.map((tag: string) => (
-              <Link href={`/blog?tag=${tag}`} key={tag}>
+              <Link href={`/${collectionName}?tag=${tag}`} key={tag}>
                 {tag}
               </Link>
             ))}
