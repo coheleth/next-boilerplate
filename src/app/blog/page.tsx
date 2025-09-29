@@ -13,16 +13,15 @@ import siteinfo from "../../siteinfo";
 import { Navbar } from "../../components/Navbar";
 import { Card } from "../../components/Card";
 import { Pagination } from "../../components/Pagination";
+import { Search } from "../../components/Search";
+
 import { Metadata } from "next/types";
 
-
-const blogPath = path.join(process.cwd(), 'blog')
-
+const blogPath = path.join(process.cwd(), "blog");
 
 export const metadata: Metadata = {
-  title: "Blog"
-}
-
+  title: "Blog",
+};
 
 export default function Blog() {
   const files = fs.readdirSync(blogPath);
@@ -36,14 +35,18 @@ export default function Blog() {
       frontmatter,
     };
   });
-  const posts = allPosts.slice(0, siteinfo.blog.pagination.items)
+  const posts = allPosts.slice(0, siteinfo.blog.pagination.items);
   const pages = Math.ceil(allPosts.length / siteinfo.blog.pagination.items);
 
   return (
     <>
       <Navbar url="/blog/" />
       <main className={styles.main}>
-        <h1 className={styles.paddedH}>Blog</h1>
+        <div className={styles.header}>
+          <h1>Blog</h1>
+          <Search placeholder="Search..." />
+        </div>
+
         <div className={styles.postList}>
           {posts.map(({ slug, frontmatter }: any) => (
             <Card

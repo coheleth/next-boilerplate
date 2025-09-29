@@ -13,9 +13,9 @@ import siteinfo from "../../../siteinfo";
 import { Navbar } from "../../../components/Navbar";
 import { Card } from "../../../components/Card";
 import { Pagination } from "../../../components/Pagination";
+import { Search } from "../../../components/Search";
 
-
-const blogPath = path.join(process.cwd(), 'blog')
+const blogPath = path.join(process.cwd(), "blog");
 
 async function getPosts({ params: { page } }: any) {
   page = parseInt(page);
@@ -59,24 +59,36 @@ export async function generateStaticParams() {
     });
   }
 
-  return paths
+  return paths;
 }
 
-export async function generateMetadata({params}: {params: Promise<{page: number}>}) {
-  const {page} = await params;
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ page: number }>;
+}) {
+  const { page } = await params;
   return {
     title: `Blog \u2014 page ${page}`,
   };
 }
 
-export default async function Blog({ params }: {params: Promise<{ page: number }>}) {
-  const {page} = await params;
-  const {posts, pages, currentPage} = await getPosts({ params: { page } })
+export default async function Blog({
+  params,
+}: {
+  params: Promise<{ page: number }>;
+}) {
+  const { page } = await params;
+  const { posts, pages, currentPage } = await getPosts({ params: { page } });
   return (
     <>
       <Navbar url="/blog/" />
       <main className={styles.main}>
-        <h1 className={styles.paddedH}>Blog – Page {currentPage}</h1>
+        <div className={styles.header}>
+          <h1>Blog – Page {currentPage}</h1>
+          <Search placeholder="Search..." />
+        </div>
+
         <div className={styles.postList}>
           {posts.map(({ slug, frontmatter }: any) => (
             <Card

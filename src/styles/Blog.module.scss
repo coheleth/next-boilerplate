@@ -4,6 +4,12 @@
   padding: 0;
   margin-top: -2px;
 }
+.header {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
 .paddedH {
   padding: 0 $layout-padding-h;
 }

@@ -1,0 +1,19 @@
+@use "./vars" as *;
+
+.searchbox {
+  display: flex;
+}
+
+.searchbar {
+  background-color: $colour-background;
+  padding: 0.5em 1em;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 2px $colour-text solid;
+}
+
+.button {
+  cursor: pointer;
+  background-color: $colour-background;
+  border: 2px $colour-text solid;
+}
