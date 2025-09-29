@@ -17,7 +17,9 @@ import { Search } from "../../components/Search";
 
 const blogPath = path.join(process.cwd(), "blog");
 
-async function getPosts({ params: { pageNumber, searchQuery } }: any) {
+async function getPosts({
+  params: { pageNumber, searchQuery, tagFilter },
+}: any) {
   const page = parseInt(pageNumber);
 
   const files = fs.readdirSync(blogPath);
@@ -38,7 +40,7 @@ async function getPosts({ params: { pageNumber, searchQuery } }: any) {
   let posts = allPosts;
 
   if (searchQuery != "") {
-    posts = allPosts.filter((post) => {
+    posts = posts.filter((post) => {
       return [
         post.frontmatter.title || "",
         post.frontmatter.summary || "",
@@ -47,6 +49,12 @@ async function getPosts({ params: { pageNumber, searchQuery } }: any) {
         .join(" ")
         .toLowerCase()
         .includes(searchQuery.toLowerCase());
+    });
+  }
+
+  if (tagFilter != "") {
+    posts = posts.filter((post) => {
+      return (post.frontmatter.tags || []).includes(tagFilter);
     });
   }
 
@@ -82,6 +90,7 @@ export async function generateMetadata(
   props: Readonly<{
     searchParams?: Promise<{
       query?: string;
+      tag?: string;
       page?: string;
     }>;
   }>
@@ -104,6 +113,7 @@ export default async function Blog(
   props: Readonly<{
     searchParams?: Promise<{
       query?: string;
+      tag?: string;
       page?: string;
     }>;
   }>
@@ -111,21 +121,24 @@ export default async function Blog(
   const searchParams = await props.searchParams;
   const pageNumber = Number(searchParams?.page) || 1;
   const searchQuery = searchParams?.query || "";
+  const tagFilter = searchParams?.tag || "";
 
   const { posts, pages, currentPage } = await getPosts({
-    params: { pageNumber, searchQuery },
+    params: { pageNumber, searchQuery, tagFilter },
   });
   return (
     <>
       <Navbar url="/blog/" />
       <main className={styles.main}>
         <div className={styles.header}>
-          {searchQuery.length == 0 && <h1>Blog – Page {currentPage}</h1>}
-          {searchQuery.length > 0 && (
-            <h1>
-              Search results for &quot;{searchQuery}&quot; – Page {currentPage}
-            </h1>
-          )}
+          <h1>
+            {searchQuery.length > 0 && (
+              <>Search results for &quot;{searchQuery}&quot; </>
+            )}
+            {searchQuery.length == 0 && <>Blog posts </>}
+            {tagFilter.length > 0 && <>with the tag &quot;{tagFilter}&quot; </>}
+            – Page {currentPage}
+          </h1>
 
           <Search placeholder="Search..." />
         </div>
@@ -133,7 +146,7 @@ export default async function Blog(
         <div className={styles.postList}>
           {posts?.map(({ slug, frontmatter }: any) => (
             <Card
-              post_url={`/blog/post/${slug}`}
+              post_url={`/blog/${slug}`}
               key={slug}
               frontmatter={frontmatter}
             />

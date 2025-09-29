@@ -22,7 +22,7 @@ Demo: https://coheleths-next-boilerplate.vercel.app
   - [x] Markdown posts
   - [x] Syntax Highlighting with Prism
   - [x] Basic Search
-  - [ ] Tags
+  - [x] Tags
 - [ ] Project portfolio
 
 ## Getting Started

@@ -4,7 +4,7 @@
 //    a short summary, taken from the post's frontmatter.
 //******************************************************************************
 
-import Link from 'next/link'
+import Link from "next/link";
 import Image from "next/image";
 
 import siteinfo from "../siteinfo";
@@ -14,19 +14,32 @@ import { formatDate } from "../utils";
 
 export function Card({ post_url, frontmatter, children }: any) {
   return (
-    <Link href={post_url} className={style.cardWrapper}>
+    <div className={style.cardWrapper}>
       <article className={style.card}>
         {siteinfo.blog.thumbnails && (
           <div className={style.thumbnail}>
-            <Image src={frontmatter.thumbnail} alt={frontmatter.title} fill={true} />
+            <Image
+              src={frontmatter.thumbnail}
+              alt={frontmatter.title}
+              fill={true}
+            />
           </div>
         )}
         <div className={style.content}>
-          <h1>{frontmatter.title}</h1>
+          <Link href={post_url}>
+            <h1>{frontmatter.title}</h1>
+          </Link>
           <p>{formatDate(frontmatter.date)}</p>
-          <p>{frontmatter.summary}</p>
+          <p className={style.summary}>{frontmatter.summary}</p>
+          <div className={style.tagList}>
+            {frontmatter.tags?.map((tag: string) => (
+              <Link href={`/blog?tag=${tag}`} key={tag}>
+                {tag}
+              </Link>
+            ))}
+          </div>
         </div>
       </article>
-    </Link>
+    </div>
   );
 }

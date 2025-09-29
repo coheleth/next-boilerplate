@@ -42,4 +42,19 @@
       transform: scale(1.1);
     }
   }
+
+  .summary {
+    margin-top: 1rem;
+  }
+
+  .tagList {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+    a {
+      padding: 0.5rem;
+      border: 2px $colour-text solid;
+    }
+  }
 }

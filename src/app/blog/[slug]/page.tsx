@@ -7,16 +7,16 @@ import Image from "next/image";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { Markdown } from "../../../../markdown";
+import { Markdown } from "../../../markdown";
 
-import style from "../../../../styles/Blog.module.scss";
-import siteinfo from "../../../../siteinfo";
+import style from "../../../styles/Blog.module.scss";
+import siteinfo from "../../../siteinfo";
 
-import { Navbar } from "../../../../components/Navbar";
-import { formatDate } from "../../../../utils";
+import { Navbar } from "../../../components/Navbar";
+import { formatDate } from "../../../utils";
+import Link from "next/link";
 
-
-const blogPath = path.join(process.cwd(), 'blog')
+const blogPath = path.join(process.cwd(), "blog");
 
 async function getPost({ params: { slug } }: any) {
   const fileName = fs.readFileSync(`${blogPath}/${slug}.md`, "utf-8");
@@ -25,7 +25,7 @@ async function getPost({ params: { slug } }: any) {
 
   return {
     frontmatter: frontmatter,
-    content: content
+    content: content,
   };
 }
 
@@ -37,21 +37,29 @@ export async function generateStaticParams() {
       file: fileName,
     },
   }));
-  return paths
+  return paths;
 }
 
-export async function generateMetadata({params}: {params: Promise<{slug: string}>}) {
-  const {slug} = await params;
-  const {frontmatter} = await getPost({params: {slug}})
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const { frontmatter } = await getPost({ params: { slug } });
   return {
     title: frontmatter.title,
   };
 }
 
-export default async function Post({params}: {params: Promise<{slug: string}>}) {
-  const {slug} = await params;
-  const {frontmatter, content} = await getPost({params: {slug}})
-  
+export default async function Post({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const { frontmatter, content } = await getPost({ params: { slug } });
+
   return (
     <>
       <Navbar url="/blog/" />
@@ -71,6 +79,14 @@ export default async function Post({params}: {params: Promise<{slug: string}>}) 
                   <>; Last Updated: {formatDate(frontmatter.updated)}</>
                 )}
               </p>
+              <p className={style.summary}>{frontmatter.summary}</p>
+              <div className={style.tagList}>
+                {frontmatter.tags?.map((tag: string) => (
+                  <Link href={`/blog?tag=${tag}`} key={tag}>
+                    {tag}
+                  </Link>
+                ))}
+              </div>
             </div>
             <Markdown>{content}</Markdown>
           </div>

@@ -62,3 +62,20 @@
     margin-left: auto;
   }
 }
+
+.summary {
+  margin-top: 4rem;
+  opacity: 0.8;
+  font-style: italic;
+}
+
+.tagList {
+  margin-top: 4rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  a {
+    padding: 0.5rem;
+    border: 2px $colour-text solid;
+  }
+}

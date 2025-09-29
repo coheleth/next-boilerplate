@@ -4,6 +4,7 @@ date: "2023-12-24"
 updated: "2023-12-24"
 summary: "Nonne vultumque vetus; protinus operosae inrorant interdumque heres eripitur posuere, nec ut unum."
 thumbnail: "/images/Nina.jpg"
+tags: ["Next.js", "MDX", "Typescript", "Markdown"]
 ---
 
 This is an example blog post.
