@@ -6,24 +6,24 @@ Demo: https://coheleths-next-boilerplate.vercel.app
 
 ## Features
 
-- [x] SASS/SCSS support
-- [x] Typescript support
-- [x] Basic SEO
-  - [x] Configurable Metadata
-  - [x] Sitemap
-  - [x] Robots.txt
-- [x] Basic components:
-  - [x] Card
-  - [x] Navigation Bar
-  - [x] Footer
-  - [x] Search Bar
-- [x] Blog:
-  - [x] Pagination
-  - [x] Markdown posts
-  - [x] Syntax Highlighting with Prism
-  - [x] Basic Search
-  - [x] Tags
-- [x] Project portfolio
+- SASS/SCSS support
+- Typescript support
+- Basic SEO
+  - Configurable Metadata
+  - Sitemap
+  - Robots.txt
+- Basic components:
+  - Card
+  - Navigation Bar
+  - Footer
+  - Search Bar
+- Blog:
+  - Pagination
+  - Markdown posts
+  - Syntax Highlighting with Prism
+  - Basic Search
+  - Tags
+- Project portfolio
 
 ## Getting Started
 
@@ -54,7 +54,12 @@ coheleths-next-boilerplate/
 ┃ ┣ siteinfo.ts (website config file)
 ┃ ┗ utils.ts (misc. utility functions)
 ┣ public/
-┃ ┣ (static files)
-┃ ┗ images/ (static images)
-┗ blog/ (markdown blog posts)
+┃ ┣ images/ (static images)
+┃ ┗ (other static files)
+┣ blog/ (markdown blog posts)
+┗ work/ (markdown portfolio projects)
 ```
+
+## To-do
+
+- [ ] Improve documentation
