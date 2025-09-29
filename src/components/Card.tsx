@@ -25,6 +25,7 @@ export function Card({
         {siteinfo.blog.thumbnails && (
           <div className={style.thumbnail}>
             <Image
+              fetchPriority="high"
               src={frontmatter.thumbnail}
               alt={frontmatter.title}
               fill={true}
