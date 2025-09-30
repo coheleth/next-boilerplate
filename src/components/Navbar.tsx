@@ -1,3 +1,4 @@
+"use client";
 //******************************************************************************
 //    Top navigation bar, with site logo linking back to the home page - follow-
 //    ing UX best practices - and links to the remaining pages.
@@ -22,8 +23,6 @@ export function Navbar({ url }: any) {
   return (
     <div className={style.navbarWrapper}>
       <div className={style.navbar}>
-        <input aria-hidden="true" type="checkbox" id={style.menu} />
-
         <Link href="/" className={style.logo}>
           <div className={style.logoImg}>
             <Image
@@ -36,14 +35,18 @@ export function Navbar({ url }: any) {
           <span className={style.logoText}>{siteinfo.title}</span>
         </Link>
 
-        <label
-          htmlFor={style.menu}
-          aria-hidden="true"
-          className={style.menuLabel}
+        <button
+          id={style.menuButton}
+          onClick={() => {
+            (
+              document.getElementById(style.menuButton) as HTMLInputElement
+            ).classList.toggle(style.open);
+          }}
+          title="Toggle navigation menu"
         >
-          <span className={style.labelOpen}>≡</span>
-          <span className={style.labelClose}>×</span>
-        </label>
+          <span className={style.labelOpen}>&#x2261;</span>
+          <span className={style.labelClose}>&times;</span>
+        </button>
 
         <div className={style.spacer}></div>
 

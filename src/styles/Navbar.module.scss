@@ -29,14 +29,12 @@
   width: 100%;
   align-items: center;
   justify-content: space-between;
-  gap: $layout-padding-h;
+  gap: 2rem 0;
 
   nav {
     display: none;
     flex-direction: column;
     gap: $layout-padding-v * 2;
-    width: 100%;
-    padding-bottom: 2rem;
   }
 
   .spacer {
@@ -86,6 +84,7 @@
     padding: $layout-padding;
     align-items: center;
     border: 2px solid $colour-text;
+    gap: $layout-padding;
 
     nav {
       display: contents;
@@ -132,25 +131,37 @@
   display: none;
 }
 
-#menu {
-  display: none;
-  background-color: tomato;
+#menuButton {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 2rem;
+  height: 2rem;
+  background-color: $colour-background;
+  font-size: 2rem;
+  border: none;
+  z-index: 10;
 
-  &:checked {
+  @include layout-bp-s {
+    display: none;
+  }
+
+  &.open {
     & ~ nav {
       display: flex;
+      height: auto;
+      padding-bottom: 2rem;
+      width: 100%;
     }
 
-    & ~ .menuLabel {
-      border: none;
+    & .labelOpen {
+      display: none;
+    }
 
-      & .labelOpen {
-        display: none;
-      }
-
-      & .labelClose {
-        display: inline !important;
-      }
+    & .labelClose {
+      display: inline !important;
     }
   }
 }
