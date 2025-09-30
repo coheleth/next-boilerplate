@@ -26,7 +26,12 @@ export function Navbar({ url }: any) {
 
         <Link href="/" className={style.logo}>
           <div className={style.logoImg}>
-            <Image src="/favicon.ico" alt="" width={100} height={100} />
+            <Image
+              src="/favicon.ico"
+              alt={siteinfo.title}
+              width={100}
+              height={100}
+            />
           </div>
           <span className={style.logoText}>{siteinfo.title}</span>
         </Link>
