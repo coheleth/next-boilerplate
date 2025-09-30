@@ -9,19 +9,20 @@ Demo: https://coheleths-next-boilerplate.vercel.app
 - SASS/SCSS support
 - Typescript support
 - Basic SEO
-  - Configurable Metadata
+  - Configurable metadata
   - Sitemap
   - Robots.txt
 - Basic components:
   - Card
-  - Navigation Bar
+  - Navigation bar
+  - Mobile navigation menu
   - Footer
-  - Search Bar
+  - Search bar
 - Blog:
   - Pagination
   - Markdown posts
-  - Syntax Highlighting with Prism
-  - Basic Search
+  - Syntax highlighting with Prism
+  - Basic search
   - Tags
 - Project portfolio
 

@@ -7,8 +7,15 @@
 .header {
   display: flex;
   width: 100%;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: $layout-padding;
+
+  @include layout-bp-s {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
 }
 .paddedH {
   padding: 0 $layout-padding-h;

@@ -7,6 +7,8 @@ import siteinfo from "../siteinfo";
 import Link from "next/link";
 import Image from "next/image";
 
+import style from "../styles/Navbar.module.scss";
+
 function NavLink({ href, path, children }: any) {
   const className = path === href ? "active" : "";
   return (
@@ -18,28 +20,42 @@ function NavLink({ href, path, children }: any) {
 
 export function Navbar({ url }: any) {
   return (
-    <div id="main-navbar-wrapper">
-      <nav id="main-navbar">
-        <Link href="/" className="logo">
-          <div className="logo-img">
+    <div className={style.navbarWrapper}>
+      <div className={style.navbar}>
+        <input aria-hidden="true" type="checkbox" id={style.menu} />
+
+        <Link href="/" className={style.logo}>
+          <div className={style.logoImg}>
             <Image src="/favicon.ico" alt="" width={100} height={100} />
           </div>
-          <span className="logo-text">{siteinfo.title}</span>
+          <span className={style.logoText}>{siteinfo.title}</span>
         </Link>
-        <div className="spacer"></div>
 
-        <NavLink href="/" path={url}>
-          Home
-        </NavLink>
+        <label
+          htmlFor={style.menu}
+          aria-hidden="true"
+          className={style.menuLabel}
+        >
+          <span className={style.labelOpen}>≡</span>
+          <span className={style.labelClose}>×</span>
+        </label>
 
-        <NavLink href="/work/" path={url}>
-          Work
-        </NavLink>
+        <div className={style.spacer}></div>
 
-        <NavLink href="/blog/" path={url}>
-          Blog
-        </NavLink>
-      </nav>
+        <nav>
+          <NavLink href="/" path={url}>
+            Home
+          </NavLink>
+
+          <NavLink href="/work/" path={url}>
+            Work
+          </NavLink>
+
+          <NavLink href="/blog/" path={url}>
+            Blog
+          </NavLink>
+        </nav>
+      </div>
     </div>
   );
 }

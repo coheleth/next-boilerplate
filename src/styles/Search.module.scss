@@ -2,6 +2,10 @@
 
 .searchbox {
   display: flex;
+  width: 100%;
+  @include layout-bp-s {
+    width: auto;
+  }
 }
 
 .searchbar {
@@ -10,6 +14,7 @@
   box-sizing: border-box;
   border: none;
   border-bottom: 2px $colour-text solid;
+  width: 100%;
 }
 
 .button {

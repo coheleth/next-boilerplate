@@ -1,0 +1,158 @@
+@use "vars" as *;
+@use "sass:math";
+
+.navbarWrapper {
+  background-color: $colour-background;
+  // position: fixed;
+  box-sizing: border-box;
+  position: sticky;
+  right: 0px;
+  top: 0px;
+  z-index: 100;
+  width: 100%;
+  height: 4rem;
+
+  @include layout-bp-s {
+    padding-top: $layout-navbar-margin;
+    position: sticky;
+  }
+}
+
+.navbar {
+  background-color: $colour-background;
+  box-sizing: border-box;
+  padding: 1rem $layout-padding-h;
+  border-bottom: 2px solid $colour-text;
+  display: flex;
+  min-height: 100%;
+  height: max-content;
+  flex-wrap: wrap;
+  max-width: 100vw;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: $layout-padding-h;
+
+  nav {
+    display: none;
+    flex-direction: column;
+    gap: $layout-padding-v * 2;
+    width: 100%;
+    padding-bottom: 2rem;
+  }
+
+  .spacer {
+    display: none;
+  }
+
+  .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: math.div($layout-padding-h, 2);
+
+    .logoText {
+      display: none;
+    }
+
+    .logoImg {
+      position: relative;
+
+      width: auto;
+      height: 2rem;
+      box-sizing: border-box;
+
+      img {
+        object-fit: contain;
+        width: auto;
+        height: 100%;
+      }
+    }
+  }
+
+  a {
+    color: $colour-text;
+    font-weight: bold;
+    text-decoration: none;
+    font-family: $font-Header;
+
+    &.active {
+      text-decoration: underline;
+    }
+  }
+
+  @include layout-bp-s {
+    flex-direction: row;
+    max-width: $layout-page-max-width;
+    margin: $layout-page-margin;
+    padding: $layout-padding;
+    align-items: center;
+    border: 2px solid $colour-text;
+
+    nav {
+      display: contents;
+    }
+    .logo {
+      flex-direction: row;
+      align-items: center;
+      gap: math.div($layout-padding-h, 2);
+
+      .logoText {
+        display: block;
+      }
+    }
+
+    .spacer {
+      display: block;
+      flex-grow: 10;
+    }
+  }
+}
+
+.menuLabel {
+  right: 1rem;
+  top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 2rem;
+  height: 2rem;
+  background-color: $colour-background;
+  font-size: 2rem;
+
+  @include layout-bp-s {
+    display: none;
+  }
+}
+
+.labelOpen {
+  display: block;
+}
+
+.labelClose {
+  display: none;
+}
+
+#menu {
+  display: none;
+  background-color: tomato;
+
+  &:checked {
+    & ~ nav {
+      display: flex;
+    }
+
+    & ~ .menuLabel {
+      border: none;
+
+      & .labelOpen {
+        display: none;
+      }
+
+      & .labelClose {
+        display: inline !important;
+      }
+    }
+  }
+}
